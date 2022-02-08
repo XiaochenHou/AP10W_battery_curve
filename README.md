@@ -23,7 +23,7 @@
    while true;do date;sleep 1s;dumpsys battery;sleep 1s;done
    ```
 
-<p align="right">(<a href="#top">back to top</a>)</p>
+<p align="right">(<a href="#top">回到顶部</a>)</p>
 
 
 
@@ -33,7 +33,7 @@
 * [openpyxl](https://openpyxl.readthedocs.io/en/stable/)
 * [pycharm](https://www.jetbrains.com/pycharm/)
 
-<p align="right">(<a href="#top">back to top</a>)</p>
+<p align="right">(<a href="#top">回到顶部</a>)</p>
 
 ## 安装
 
@@ -53,7 +53,7 @@
    ```sh
    cd AP10W_battery_curve
    ```
-<p align="right">(<a href="#top">back to top</a>)</p>
+<p align="right">(<a href="#top">回到顶部</a>)</p>
 
 
 ## 使用指南
@@ -69,13 +69,13 @@
    ```sh
    python3 battery2.py [log的路径] -d [xlsx目标路径] -i [获取log的周期默认为2]
    ```  
-<p align="right">(<a href="#top">back to top</a>)</p>
+<p align="right">(<a href="#top">回到顶部</a>)</p>
 
 ## 许可证
 
 根据 MIT 许可证分发。 有关更多信息，请参阅`LICENSE.txt`。
 
-<p align="right">(<a href="#top">back to top</a>)</p>
+<p align="right">(<a href="#top">回到顶部</a>)</p>
 
 ## 联系方式
 

@@ -2,10 +2,14 @@ from datetime import datetime
 import pandas as pd
 import re
 import argparse
+import time
 
+start = time.time()
 parser = argparse.ArgumentParser(description="Process the battery log file and output some useful sheets")
 parser.add_argument('log_file_dir', type=str, help="The input log name with path")
 parser.add_argument('-d', type=str, metavar="Destination directory", help="The optional output directory")
+parser.add_argument('-i', type=int, metavar="Time Interval", default=2,
+                    help="The optional time interval setting, default is 2")
 args = parser.parse_args()
 
 if args.log_file_dir[-4:] != '.log' and args.log_file_dir[-4:] != '.txt':
@@ -14,7 +18,7 @@ if args.d:
     if args.d[-5:] != ".xlsx":
         raise TypeError("The destination file must be ended with '.xlsx'!")
 
-INTERVAL = 2
+INTERVAL = args.i
 FILE_NAME = args.log_file_dir.split("\\")[-1].split(".")[0]
 
 # regular expressions for the levels and time need to be extracted from the log
@@ -84,3 +88,5 @@ if args.d:
     result.to_excel(args.d, index=False, header=True)
 else:
     result.to_excel(args.log_file_dir[:-3] + "xlsx", index=False, header=True)
+end = time.time()
+print(f'========Successfully processed in {round(end - start, 2)}s!========')

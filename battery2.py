@@ -5,7 +5,6 @@ import re
 import argparse
 import time
 import os
-import pyfiglet
 
 """                                                                                                   
      █████ ███████████ █████       █████ █████ ███████████ ██████████ █████   ████
@@ -102,7 +101,12 @@ def main(file_dir, dest_dir=None):
 
 
 # logo printed
-print(pyfiglet.figlet_format("IFLYTEK"))
+print("""  
+  ___ ___ _ __   _______ ___ _  __
+ |_ _| __| |\ \ / /_   _| __| |/ /
+  | || _|| |_\ V /  | | | _|| ' < 
+ |___|_| |____|_|   |_| |___|_|\_\\
+        """)
 parser = argparse.ArgumentParser(description="Process the battery log file and output some useful sheets")
 parser.add_argument('f', type=str, help="The input log file/folder with path")
 parser.add_argument('-p', type=str, metavar="Destination path", help="The optional output path")

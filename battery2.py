@@ -6,6 +6,17 @@ import argparse
 import time
 import os
 
+"""                                                                                                   
+     █████ ███████████ █████       █████ █████ ███████████ ██████████ █████   ████
+    ░░███ ░░███░░░░░░█░░███       ░░███ ░░███ ░█░░░███░░░█░░███░░░░░█░░███   ███░ 
+     ░███  ░███   █ ░  ░███        ░░███ ███  ░   ░███  ░  ░███  █ ░  ░███  ███   
+     ░███  ░███████    ░███         ░░█████       ░███     ░██████    ░███████    
+     ░███  ░███░░░█    ░███          ░░███        ░███     ░███░░█    ░███░░███   
+     ░███  ░███  ░     ░███      █    ░███        ░███     ░███ ░   █ ░███ ░░███  
+     █████ █████       ███████████    █████       █████    ██████████ █████ ░░████
+    ░░░░░ ░░░░░       ░░░░░░░░░░░    ░░░░░       ░░░░░    ░░░░░░░░░░ ░░░░░   ░░░░                                                                                                                                                                                                                                                                                                                                                    
+"""
+
 
 def time_duration(time_start, time_end):
     """
@@ -20,6 +31,12 @@ def time_duration(time_start, time_end):
 
 
 def main(file_dir, dest_dir=None):
+    """
+    The main function that is effective for creating the Excel format worksheet
+    :param file_dir: The directory/path to the file
+    :param dest_dir: The directory/path to the destination
+    :return: Nothing, just in case it is not a valid format file and end the function as quick as possible.
+    """
     # regular expressions for the levels and time need to be extracted from the log
     if file_dir[-4:] != '.log' and file_dir[-4:] != '.txt':
         print("ERROR! The input log must be ended with '.log' or '.txt'!")
@@ -96,7 +113,6 @@ if args.p:
     if args.d[-5:] != ".xlsx":
         raise TypeError("The destination file must be ended with '.xlsx'!")
 
-
 if os.path.isdir(args.f):
     print("It is a directory")
     print("====================================")
@@ -114,10 +130,3 @@ elif os.path.isfile(args.f):
     main(args.f, dest_dir=args.p)
 else:
     raise TypeError("The input log must be ended with '.log' or '.txt' or a directory!")
-
-
-
-
-
-
-

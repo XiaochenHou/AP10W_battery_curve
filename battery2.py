@@ -84,7 +84,6 @@ def main(file_dir, dest_dir=None):
 
 
 parser = argparse.ArgumentParser(description="Process the battery log file and output some useful sheets")
-# parser.add_argument('--file', type=str, help="The input log name with path")
 parser.add_argument('f', type=str, help="The input log file/folder with path")
 parser.add_argument('-p', type=str, metavar="Destination path", help="The optional output path")
 parser.add_argument('-i', type=int, metavar="Time Interval", default=2,

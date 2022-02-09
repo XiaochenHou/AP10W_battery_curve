@@ -61,7 +61,7 @@
    ```sh
    python3 battery2.py -h
    ```
-2. 基础用法，中括号替换为log的路径，**必须为.log和.txt结尾的文件**
+2. 基础用法，中括号替换为log的路径，**必须为.log和.txt结尾的文件或包含文件的目录**
    ```sh
    python3 battery2.py [log的路径]
    ```

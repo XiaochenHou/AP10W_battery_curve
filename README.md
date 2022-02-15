@@ -37,19 +37,15 @@
 
 ## 安装
 
-1. 安装 pandas库
+1. 安装各个依赖的第三方库(更新可能不及时请自行检查安装依赖)
     ```sh
-   pip3 install pandas
+   pip3 install pandas openpyxl scikit-learn numpy matplotlib
    ```
-2. 安装 openpyxl库
-    ```sh
-   pip3 install openpyxl
-   ```
-3. 克隆这个仓库到本地
+2. 克隆这个仓库到本地
    ```sh
    git clone https://github.com/XiaochenHou/AP10W_battery_curve.git
    ```
-4. 进入文件夹
+3. 进入文件夹
    ```sh
    cd AP10W_battery_curve
    ```

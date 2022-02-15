@@ -1,10 +1,15 @@
 import pathlib
 from datetime import datetime
+
+from sklearn.linear_model import LinearRegression
+from sklearn.metrics import r2_score
+import numpy as np
 import pandas as pd
 import re
 import argparse
 import time
 import os
+import matplotlib.pyplot as plt
 
 """                                                                                                   
      █████ ███████████ █████       █████ █████ ███████████ ██████████ █████   ████
@@ -90,16 +95,46 @@ def main(file_dir, dest_dir=None):
 
     # outer join the two data frames
     result = pd.concat([df, df2], axis=1, join='outer')
+
     # output the file in Excel
     if dest_dir:
-        result.to_excel(dest_dir, index=False, header=True)
+        writer = pd.ExcelWriter(dest_dir, engine='xlsxwriter')
     else:
-        result.to_excel(file_dir[:-3] + "xlsx", index=False, header=True)
+        writer = pd.ExcelWriter(file_dir[:-3] + "xlsx", engine='xlsxwriter')
+    result.to_excel(writer, sheet_name='Sheet1', index=False)
+    if not args.wg:
+        make_plot(df2, writer)
+    else:
+        writer.save()
     end = time.time()
     print(f'========Successfully processed in {round(end - start, 2)}s!========')
     print()
 
 
+def make_plot(df2, writer):
+    # make a plot here
+    X = np.arange(0, len(df2['time'])).reshape(-1, 1)
+    Y = df2.iloc[:, 1].values.reshape(-1, 1)
+    linear_regressor = LinearRegression()
+    linear_regressor.fit(X, Y)
+    Y_pred = linear_regressor.predict(X)  # make predictions
+
+    df2.plot(x='time', y='battery', figsize=(20, 10), marker='.')
+    plt.plot(X, Y_pred, color='red')
+    plt.title("Battery curve_r2 = " + str(round(r2_score(y_true=df2['battery'], y_pred=Y_pred), 4)))
+    plt.xlabel("time")
+    plt.ylabel("battery")
+    plt.yticks(np.arange(0, 101, 5))
+    plt.savefig('temp.png')
+    worksheet = writer.sheets['Sheet1']
+    # Insert an image.
+    worksheet.insert_image('I3', 'temp.png')
+    # Close the Pandas Excel writer and output the Excel file.
+    writer.save()
+    os.remove("temp.png")
+
+
+# =====================================================================================================
 # logo printed
 print("""  
   ___ ___ _ __   _______ ___ _  __
@@ -112,6 +147,8 @@ parser.add_argument('f', type=str, help="The input log file/folder with path")
 parser.add_argument('-p', type=str, metavar="Destination path", help="The optional output path")
 parser.add_argument('-i', type=int, metavar="Time Interval", default=2,
                     help="The optional time interval setting, default is 2")
+parser.add_argument('--wg', help="Do not generate the graph", action='store_true')
+
 args = parser.parse_args()
 INTERVAL = args.i
 

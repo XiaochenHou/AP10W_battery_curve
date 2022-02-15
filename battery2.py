@@ -112,6 +112,12 @@ def main(file_dir, dest_dir=None):
 
 
 def make_plot(df2, writer):
+    """
+    The function here make a plot and save as image, then add the figure to the Excel
+    :param df2: the dataframe that stores the data
+    :param writer: the excel writer
+    :return: nothing
+    """
     # make a plot here
     X = np.arange(0, len(df2['time'])).reshape(-1, 1)
     Y = df2.iloc[:, 1].values.reshape(-1, 1)

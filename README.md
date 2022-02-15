@@ -57,7 +57,14 @@
 
 
 ## 使用指南
+**2022.2.15更新：v4.0版本更新，加入自动生成曲线图**
+<br >
+1. 可以通过--wg来取消生成曲线图without graph
+   ```sh
+   battery2 --wg
+   ```
 
+---
 **2022.2.9更新：现已将文件打包成.exe格式文件，可以在windows下直接运行**
 <br >
 1. 使用说明：
@@ -81,7 +88,7 @@
    ```
 3. 拓展用法
    ```sh
-   python3 battery2.py [log的路径] -d [xlsx目标路径] -i [获取log的周期默认为2]
+   python3 battery2.py [log的路径] -d [xlsx目标路径] -i [获取log的周期默认为2] --wg [withoutgraph不生成图片])
    ```  
 <p align="right">(<a href="#top">回到顶部</a>)</p>
 
